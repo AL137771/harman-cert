@@ -229,25 +229,24 @@ if(isset($_POST['Certification_Tracing_Values'])){
         
         <div class="col-lg-12">
                 <div class="table-responsive">        
-                    <table id="example" class="table" style="width:100%">
+                <table id="example" class="table table-bordered table-hover table-striped table-sm" style="width:100%">
                         <thead>
                             <tr>
-                                <td>#</td>
-                                <td>AREA</td>
-                                <td>OPERACION</td>
-                                <td>COMPLEJIDAD</td>
-                                <td>#</td>
-                                <td>EMPLEADO</td>
-                                <td>FECHA CREACION</td>
+                             <td><strong>#</strong></td>
+                                <td><strong>AREA</strong></td>
+                                <td><strong>OPERACION</strong></td>
+                                <td><strong>COMPLEJIDAD</strong></td>
+                                <td><strong>#</strong></td>
+                                <td><strong>EMPLEADO</strong></td>
+                                <td><strong>FECHA CREACION</strong></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>ULTIMA ACTUALIZACION</td>
-                                <td>TOT HRS</td>
-                                <td>PROGRESO</td>
-                                <td>RECERT</td> 
-                                
+                                <td><strong>ULTIMA ACTUALIZACION</strong></td>
+                                <td><strong>TOT HRS</strong></td>
+                                <td><strong>PROGRESO</strong></td>
+                              
                             </tr>
                         </thead>
                             <tbody>
@@ -293,7 +292,7 @@ if(isset($_POST['Certification_Tracing_Values'])){
                                 </div>
                               </div>
                               </div></td>';
-                                echo '<td></td>';
+                               
                                 echo '</form>';
                                 echo '</tr>';
 

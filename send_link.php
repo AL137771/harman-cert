@@ -24,7 +24,7 @@ $query = $db->query($query);
     $email=md5($row['userName']);
     $pass=md5($row['password']);
     
-    $link="<a href='https://harman-cert.000webhostapp.com/reset.php?key=".$email."&reset=".$pass."'>Click To Reset password</a>";
+    $link="<a href='https://harman-cert.com//reset.php?key=".$email."&reset=".$pass."'>Click To Reset password</a>";
   
         $mail = new PHPMailer(true);
         $mail->IsSMTP();

@@ -1,12 +1,17 @@
 <?php 
 // Database configuration 
+
 $dbHost     = "localhost"; 
 $dbUsername = "u663775317_yhyj"; 
 $dbPassword = "egeNuVuZev"; 
 $dbName     = "u663775317_yhyj"; 
  
-
-
+/*
+$dbHost     = "localhost"; 
+$dbUsername = "root"; 
+$dbPassword = ""; 
+$dbName     = "harman3"; 
+ */
 
 error_reporting (E_ALL ^ E_NOTICE);
 
