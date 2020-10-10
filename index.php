@@ -337,7 +337,7 @@ input[type=text]:placeholder input[type=password]:placeholder {
   <br><br>
     <!-- Login Form -->
 	<form action="Verify_User.php" method="post">
-      <input type="text" id="login" class="fadeIn second" name="usuario" placeholder="Ingresa tu correo electronico">
+      <input type="text" id="login" class="fadeIn second" name="usuario" placeholder="Ingresa tu Email compa">
      
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Ingresa tu contraseña">
       <br><br>
