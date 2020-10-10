@@ -1,0 +1,35 @@
+
+     
+        <div class='row';>
+       
+        echo '<br>';
+        echo '</div>';
+
+       echo '<div class="row">';
+        $l = 1;
+        while ($l <= $jjj['suma']){
+        while ($cont = $conteo->fetch_assoc()) {
+  
+          $answers = 'SELECT test.idTest, questions.idQuestion, answer.idAnswer, answer.answer
+                      FROM test
+                      INNER JOIN questions ON questions.idTest = test.idTest
+                      INNER JOIN answer ON answer.idQuestion = questions.idQuestion
+                      WHERE questions.idQuestion = '.$cont['idQuestion'];
+                  $resp = $db->query($answers);
+                  echo ''.$l;
+                  echo '<select class="form-control col-md-12" name="a" id="a">';
+                  while ($contar = $resp -> fetch_assoc()) {
+                    echo '<option class="text-muted" value="'.$contar['idAnswer'].'">'.$contar['answer'].'</option>';
+                  }
+                  echo '</select>';
+                  $l++;
+      }
+    }
+    
+        ?>
+        
+        <input type="hidden" name="question1" value=''>
+
+        </div>
+        </div>       
+        </form>
