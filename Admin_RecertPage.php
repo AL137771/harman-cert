@@ -2,7 +2,14 @@
 session_start();
 include 'DB_CONN.php';
 
-
+if(isset($_SESSION['done_a'])){
+  echo "<script type='text/javascript'>
+          alert('" . $_SESSION['done_a'] . "');
+        </script>";
+  //to not make the error message appear again after refresh:
+  unset($_SESSION['done_a']);
+  echo "<script>window.close();</script>";
+}
 $query = 'SELECT * FROM trainers';
 $trainerOpt = $db->query($query);
 
@@ -227,6 +234,7 @@ if (isset($_POST['Search'])) {
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                                 <td>ULTIMA ACTUALIZACION</td>
                                 <td>TOT HRS</td>
                                 <td>PROGRESO</td>
@@ -258,6 +266,8 @@ if (isset($_POST['Search'])) {
                                     echo  '<td><input type="hidden" name="idEmpleado" value="'.$data['idEmpleado'].'">'.$data['idEmpleado'].'</td>';
                                     echo  '<td><input type="hidden" name="nameEmpleado" value="'.$data['nameEmpleado'].'">'.$data['nameEmpleado'].'</td>';
                                     echo  '<td><input type="hidden" name="fechaCreacion" value="'.$data['fechaCreacion'].'">'.$data['fechaCreacion'].'</td>';
+                                    echo  '<td><button type="submit" formtarget="_blank" formaction="Admin_Add_Hours.php" name="Add_Hours_Recertification" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i></button></td>';
+
                                     echo  '<td><button type="submit" formaction="Trace_Created_Recertification.php" name="Trace_Created_Recertification" class="btn btn-outline-info"><i class="fas fa-clipboard"></i></button></td>';
                                     echo  '<td><button type="submit" formaction="Record_Recertification.php" name="Record_Recertification" 
                                     class="btn btn-outline-success">
