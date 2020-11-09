@@ -5,13 +5,13 @@ $dbHost     = "localhost";
 $dbUsername = "u663775317_yhyj"; 
 $dbPassword = "egeNuVuZev"; 
 $dbName     = "u663775317_yhyj"; 
-/*
 
-$dbHost     = "localhost"; 
+
+/* $dbHost     = "localhost"; 
 $dbUsername = "root"; 
 $dbPassword = ""; 
 $dbName     = "harman3"; 
-  */
+   */
 
 error_reporting (E_ALL ^ E_NOTICE);
 
@@ -24,5 +24,5 @@ if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error); 
 }
 
-date_default_timezone_set('America/Chihuahua');
+date_default_timezone_set('America/Mexico_City');
 $date = date('Y-m-d H:i:s');

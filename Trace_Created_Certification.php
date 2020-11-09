@@ -99,6 +99,10 @@ if (isset($_POST['Trace_Created_Certification'])) {
     } ?> method="POST" name='sq1'>
        
                     <?php     
+
+                  date_default_timezone_set('America/Chihuahua');
+                  $date = date('Y-m-d');
+
                       include "Table_Template.php";               
                         while($row = $consulta -> fetch_assoc()){
                             echo '<tr class="table-primary">';
@@ -122,8 +126,7 @@ if (isset($_POST['Trace_Created_Certification'])) {
                                 echo '</tr>';                             
                             } else {
                               echo '<tr class="table-primary">';
-                                //echo '<td><input type="date" name="date_2" value="'.$row['date_2'].'"></td>';
-                                echo '<td></td>';
+                                echo '<td><input type="hidden" name="date_2" value="'.$date.'"></td>';
                                 echo '<td><input class="form-control" type="number" min="0" max="5" name="av_2" value="'.$row['av_2'].'"></td>';
                                 echo '<td><input class="form-control" type="number" min="0" max="5" name="it_2" value="'.$row['it_2'].'"></td>';
                                 echo '<td></td>';
@@ -144,7 +147,8 @@ if (isset($_POST['Trace_Created_Certification'])) {
                                 echo '</tr>';                             
                             } else {
                               echo '<tr class="table-primary">';
-                                echo '<td></td>';
+                          
+                                echo '<td><input type="hidden" name="date_3" value="'.$date.'"></td>';
                                 echo '<td><input class="form-control" type="number" min="0" max="10" name="av_3" value="'.$row['av_3'].'"></td>';
                                 echo '<td><input class="form-control" type="number" min="0" max="10" name="it_3" value="'.$row['it_3'].'"></td>';
                                 echo '<td></td>';
@@ -156,7 +160,7 @@ if (isset($_POST['Trace_Created_Certification'])) {
 
                             if($row['av_4'] == 0 AND $row['it_4'] == 0 AND $row['ap_1'] == 0 AND $row['teo_4'] == 0 AND $row['pra_4'] == 0 ) {
                               echo '<tr class="table-primary">';
-                                echo '<td></td>';
+                                echo '<td><input type="hidden" name="date_4" value="'.$date.'"></td>';
                                 echo '<td><input class="form-control" type="number" min="0" max="10" name="av_4" value="'.$row['av_4'].'"></td>';
                                 echo '<td><input class="form-control" type="number" min="0" max="10" name="it_4" value="'.$row['it_4'].'"></td>';
                                 echo '<td><input class="form-control" type="number" min="0" max="10" name="ap_1" value="'.$row['ap_1'].'"></td>';

@@ -163,40 +163,24 @@ $it_1 = $_POST['it_1'];
 $teo_1 = $_POST['teo_1'];
 $pra_1 = $_POST['pra_1'];
 
-//$date_2 = $_POST['date_2'];
+$date_2 = $_POST['date_2'];
 $av_2 = $_POST['av_2'];
 $it_2 = $_POST['it_2'];
 $teo_2 = $_POST['teo_2'];
 $pra_2 = $_POST['pra_2'];
 
-//$date_3 = $_POST['date_3'];
+$date_3 = $_POST['date_3'];
 $av_3 = $_POST['av_3'];
 $it_3 = $_POST['it_3'];
 $teo_3 = $_POST['teo_3'];
 $pra_3 = $_POST['pra_3'];
 
-//$date_4 = $_POST['date_4'];
+$date_4 = $_POST['date_4'];
 $av_4 = $_POST['av_4'];
 $it_4 = $_POST['it_4'];
 $ap_1 = $_POST['ap_1'];
 $teo_4 = $_POST['teo_4'];
 $pra_4 = $_POST['pra_4'];
-
-if ($av_1 > 0) {
-    date_default_timezone_set('America/Chihuahua');
-    $date_2 = date('Y-m-d');
-}
-
-if ($av_1 > 0 and $av_2 > 0  ) {
-    date_default_timezone_set('America/Chihuahua');
-    $date_3 = date('Y-m-d');
-}
-$date_4 = $date_3;
-
-if ($av_1 > 0 and $av_2 > 0 and $av_3 > 0  ) {
-    date_default_timezone_set('America/Chihuahua');
-    $date_4 = date('Y-m-d');
-}
 
 $sq = 'UPDATE certsq SET 
             date_1  = '.'"'.$date_1.'"'.', 
