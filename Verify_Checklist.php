@@ -4,7 +4,7 @@ include "DB_CONN.php";
 
 
 if (isset($_POST['Create_Emp'])) {
-    $trainer = $_SESSION['id'];
+    $trainer = $_POST['idTrainer'];
     $area = $_POST['area'];
     $operacion = $_POST['operacion'];
     $complejidad = $_POST['complejidad'];

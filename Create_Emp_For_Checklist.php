@@ -2,6 +2,7 @@
 session_start();
 include "DB_CONN.php";
 
+
 if(isset($_SESSION['checklist_restriction'])){
   echo "<script type='text/javascript'>
           alert('" . $_SESSION['checklist_restriction'] . "');
@@ -19,6 +20,10 @@ if(isset($_SESSION['checklist_success'])){
   }
 
 
+
+  
+if (isset($_SESSION['id'])) {
+
 $query =  'SELECT * FROM area ';  
 
 
@@ -28,6 +33,12 @@ $areaOpt = $db -> query($query);
 $query2 =  "SELECT * from empleados ORDER BY idEmpleado";
 $empOptions = $db-> query($query2);
  
+}
+else {
+  echo "<script type='text/javascript'>
+  alert('Recargue la pagina de nuevo');
+</script>";
+}
 
 ?>
 
@@ -103,7 +114,7 @@ $empOptions = $db-> query($query2);
     <form action='' onsubmit="return checkForm(this);" method="post">
         <div class='form-group container'>
                 <div class='row'>
-                    <input type="hidden" name="idCertification">
+                    <input type="hidden" name="idTrainer" value="<?php echo $_SESSION['id'] ?> ">
                     <div class='col-md-3'></div>
                         <select required class='form-control col-md-6 chosen' name="area" id="area">
                         <option value="">SELECCIONA AREA</option>

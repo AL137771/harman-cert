@@ -1,10 +1,10 @@
 <?php 
 // Database configuration 
 
-$dbHost     = "localhost"; 
+ $dbHost     = "localhost"; 
 $dbUsername = "u663775317_yhyj"; 
 $dbPassword = "egeNuVuZev"; 
-$dbName     = "u663775317_yhyj"; 
+$dbName     = "u663775317_yhyj";  
 
 
 /* $dbHost     = "localhost"; 
@@ -24,5 +24,6 @@ if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error); 
 }
 
-date_default_timezone_set('America/Mexico_City');
+date_default_timezone_set('America/Chihuahua');
+
 $date = date('Y-m-d H:i:s');
