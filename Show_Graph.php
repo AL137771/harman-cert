@@ -82,13 +82,13 @@ session_start();
 
 
             } elseif ($typeG == 2) {
-                $query = 'SELECT CAST(lastUp AS DATE), certsq.idTrainer, turno.idTurno, turno.nameTurno , SUM(certsq.status) as status
+                $query = 'SELECT DISTINCT CAST(lastUp AS DATE), certsq.idTrainer, turno.idTurno, turno.nameTurno , SUM(certsq.status) as status
                 FROM certsq
                 INNER JOIN trainers on trainers.idTrainer = certsq.idTrainer
                 INNER JOIN turno on trainers.idTurno = turno.idTurno
                 WHERE CAST(lastUp AS DATE) BETWEEN '.'"'.$date_1.'"'.'  AND '.'"'.$date_2.'"'.' 
                 AND certsq.status = 1 
-                GROUP BY certsq.idTrainer';
+                GROUP BY turno.idTurno';
 
                $result = $db->query($query);
              $chart_data= "";

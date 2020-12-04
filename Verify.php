@@ -15,11 +15,11 @@ if (isset($_POST['Admin_Add_Hours_Certification'])) {
     $timestamp1 = strtotime($lastUp);
         
       
-                    $query = 'INSERT INTO hrsregistered (idCertification, idTrainer, idEmpleado, fechaRegist, hourRegistered)
-                    VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num.'")';
-                    $db->query($query);
+        $query = 'INSERT INTO hrsregistered (idCertification, idTrainer, idEmpleado, fechaRegist, hourRegistered)
+        VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num.'")';
+        $db->query($query);
 
-                    $_SESSION['done_a'] = "Se han agregado ". $num . " horas a la certificacion #".$idCertification; 
+        $_SESSION['done_a'] = "Se han agregado ". $num . " horas a la certificacion #".$idCertification; 
 
                
         $query = 'SELECT progress FROM certsq where idCertification ='.$idCertification;
@@ -53,11 +53,23 @@ if (isset($_POST['Admin_Add_Hours_Certification'])) {
             $final = 'UPDATE certsq SET 
             lastUp  ='.'"'.$fechaIngreso.'"'.' 
             WHERE idCertification ='.$idCertification;
-            $result4 = $db->query($final);     
+            $result4 = $db->query($final);   
+        } 
 
+        $query2 = 'SELECT progress FROM certsq where idCertification ='.$idCertification;
+        $result2 = $db -> query($query2);
+            $row2 = $result2 -> fetch_assoc() ;
+
+        if ($row2['progress'] > 150) {
+            $final = 'UPDATE certsq SET 
+            progress  = 150 
+            WHERE idCertification ='.$idCertification;
+            $result4 = $db->query($final);  
+        }
+                    
           header("Location: Admin_MainPage.php");
 
-        }
+       
 
      
     
