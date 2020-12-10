@@ -42,9 +42,14 @@
 
 
            <div class="list-group list-group-flush">
-            <button type="submit" formaction='Change_Cert_From_Trainers.php' name="LogOut" class="btn btn-sm btn-outline-danger">
-            <i class="fas fa-edit"></i> GESTION DE CERTIFICACIONES</button>         
-       
+            <button type="submit" formaction='Change_Cert_From_Trainers.php' name="LogOut" class="btn btn-sm btn-outline-primary">
+            <i class="fas fa-piggy-bank"></i> BANCO CERTIFICACIONES</button>         
+          </div>
+
+          
+          <div class="list-group list-group-flush">
+            <button type="submit" formaction='Change_Recert_From_Trainers.php' name="LogOut" class="btn btn-sm btn-outline-success">
+            <i class="fas fa-piggy-bank"></i> BANCO RECERTIFICACIONES</button>         
           </div>
 
           <div class="list-group list-group-flush">

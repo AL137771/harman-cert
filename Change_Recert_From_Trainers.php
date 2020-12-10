@@ -16,19 +16,19 @@ $opOpt = $db -> query($query);
 
 
 
-          if (isset($_POST['Save_Certification'])) {
+          if (isset($_POST['Save_Recertification'])) {
             $id = $_SESSION['id'];
             $idCertification = $_POST['idCertification'];
             $idTrainer = $_POST['idTrainer'];
             
 
-            $final = 'UPDATE certsq SET 
+            $final = 'UPDATE recertsq SET 
             idTrainer  ='.$id.'
             WHERE idCertification ='.$idCertification.'
             AND idTrainer ='.$idTrainer;
   
             if ($db->query($final) === TRUE) {
-              $_SESSION['done_a'] = "Certificacion guardada satisfactoriamente"; 
+              $_SESSION['done_a'] = "Recertificacion guardada satisfactoriamente"; 
             } else {
              echo $db->error;
             }
@@ -49,7 +49,7 @@ $opOpt = $db -> query($query);
     
             if (isset($_POST['Check_Cert_Employee'])) {
               $idEmpleado = $_POST['idEmpleado'];
-              $query = 'SELECT * FROM certsq where active = 2' ;
+              $query = 'SELECT * FROM recertsq where active = 2' ;
             
               $search = $db -> query($query);
 
@@ -59,10 +59,10 @@ $opOpt = $db -> query($query);
              echo $trainer_2 = $_POST['trainer_2'];
               
             
-                  $query = 'UPDATE certsq
-                          SET certsq.idTrainer = '.$trainer_1.', 
+                  $query = 'UPDATE recertsq
+                          SET recertsq.idTrainer = '.$trainer_1.', 
                               
-                                AND certsq.idArea = "'.$area.'"';
+                                AND recertsq.idArea = "'.$area.'"';
               
                                if ($db->query($query) === TRUE) {
                                  echo "";
@@ -70,11 +70,11 @@ $opOpt = $db -> query($query);
                                  echo  $db->error;
                                }
               
-                               $query = 'SELECT * FROM certsq where active = 2' ;
+                               $query = 'SELECT * FROM recertsq where active = 2' ;
             
             $search = $db -> query($query);
               } else {
-                $query = 'SELECT * FROM certsq where active = 2' ;
+                $query = 'SELECT * FROM recertsq where active = 2' ;
             
             $search = $db -> query($query);
  
@@ -99,45 +99,45 @@ if (isset($_POST['Search'])) {
 
 
   if (!empty($trainer)) {
-   $t = 'AND certsq.idTrainer ="'.$trainer.'"'; 
+   $t = 'AND recertsq.idTrainer ="'.$trainer.'"'; 
   } else {
     $t = '';
     }
   if (!empty($area)) {
-   $a = 'AND certsq.idArea ="'.$area.'"';
+   $a = 'AND recertsq.idArea ="'.$area.'"';
  }else {
    $a = '';
    }
  if (!empty($operacion)) {
-   $o = 'AND certsq.idOperacion ="'.$operacion.'"';
+   $o = 'AND recertsq.idOperacion ="'.$operacion.'"';
  } else {
    $o = '';
    }
  
  if (!empty($idEmpleado)) {
-   $ie = 'AND certsq.idEmpleado ="'.$idEmpleado.'"';
+   $ie = 'AND recertsq.idEmpleado ="'.$idEmpleado.'"';
  }else {
    $ie = '';
    }
  if (!empty($nameEmpleado)) {
-   $ne = 'AND certsq.nameEmpleado LIKE "%'.$nameEmpleado.'%"';
+   $ne = 'AND recertsq.nameEmpleado LIKE "%'.$nameEmpleado.'%"';
  } else {
    $ne = '';
    }
  
    $finalstring = $t.$a.$o.$ie.$ne;
  
-   $query = 'SELECT DISTINCT certsq.idCertification, certsq.idTrainer, trainers.nameTrainer, certsq.idArea, area.nombreArea, 
-   certsq.idOperacion, operacion.nOperacion , certsq.idComplejidad, complejidad.tipoComplejidad, 
-   certsq.idEmpleado, certsq.nameEmpleado, certsq.lastUp , certsq.fechaCreacion, 
-   certsq.progress
-     FROM certsq 
-     INNER JOIN areaxtrainer ON areaxtrainer.idTrainer = certsq.idTrainer
+   $query = 'SELECT DISTINCT recertsq.idCertification, recertsq.idTrainer, trainers.nameTrainer, recertsq.idArea, area.nombreArea, 
+   recertsq.idOperacion, operacion.nOperacion , recertsq.idComplejidad, complejidad.tipoComplejidad, 
+   recertsq.idEmpleado, recertsq.nameEmpleado, recertsq.lastUp , recertsq.fechaCreacion, 
+   recertsq.progress
+     FROM recertsq 
+     INNER JOIN areaxtrainer ON areaxtrainer.idTrainer = recertsq.idTrainer
      INNER JOIN trainers ON trainers.idTrainer = areaxtrainer.idTrainer
-     INNER JOIN area ON area.idArea = certsq.idArea
-     INNER JOIN operacion ON operacion.idOperacion = certsq.idOperacion
-     INNER JOIN complejidad ON complejidad.idComplejidad = certsq.idComplejidad
-     WHERE  certsq.progress < 151 and certsq.active = 1 and certsq.status = 0 '.$finalstring;
+     INNER JOIN area ON area.idArea = recertsq.idArea
+     INNER JOIN operacion ON operacion.idOperacion = recertsq.idOperacion
+     INNER JOIN complejidad ON complejidad.idComplejidad = recertsq.idComplejidad
+     WHERE  recertsq.progress < 151 and recertsq.active = 1 and recertsq.status = 0 '.$finalstring;
             $search = $db -> query($query);
  }
  
@@ -184,7 +184,7 @@ if (isset($_POST['Search'])) {
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle">CERTIFICACIONES EN PROGRESO</button>
+        <button class="btn btn-success" id="menu-toggle">RECERTIFICACIONES EN PROGRESO</button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -262,7 +262,7 @@ if (isset($_POST['Search'])) {
             <div class="row">
             <input onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder='NUMERO DE RELOJ' class='form-control col-md-5 chosen' type="text" name="idEmpleado" id="">
             <input placeholder='NOMBRE DE EMPLEADO'  class='form-control col-md-5 chosen' type="text" name="nameEmpleado" id="">
-            <button type="submit" formaction="Change_Cert_From_Trainers.php" name="Search" class="col-md-2 btn btn-primary">Buscar</button>
+            <button type="submit" formaction="Change_Recert_From_Trainers.php" name="Search" class="col-md-2 btn btn-primary">Buscar</button>
             
             </div>
             </form>
@@ -311,7 +311,7 @@ if (isset($_POST['Search'])) {
                                     echo  '<td><input type="hidden" name="idEmpleado" value="'.$data['idEmpleado'].'">'.$data['idEmpleado'].'</td>';
                                     echo  '<td><input type="hidden" name="nameEmpleado" value="'.$data['nameEmpleado'].'">'.$data['nameEmpleado'].'</td>';
                                     echo  '<td><input type="hidden" name="fechaCreacion" value="'.$data['fechaCreacion'].'">'.$data['fechaCreacion'].'</td>';
-                                    echo  '<td><button type="submit"  formaction="Change_Cert_From_Trainers.php" name="Save_Certification" class="btn btn-outline-success"><i class="fas fa-save"></i></button></td>';
+                                    echo  '<td><button type="submit"  formaction="Change_Recert_From_Trainers.php" name="Save_Recertification" class="btn btn-outline-success"><i class="fas fa-save"></i></button></td>';
                                     echo  '<td><input type="hidden" name="lastUp" value="'.$data['lastUp'].'">'.$data['lastUp'].'</td>';
                                     echo  '<td>'.$data['progress'].'</td>';
                                     if($value < 150) {
