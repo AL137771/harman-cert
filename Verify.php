@@ -1,145 +1,7 @@
 <?php
 include 'DB_CONN.php';
 session_start();
-    
 
-if (isset($_POST['Admin_Add_Hours_Certification'])) {
-        
-    $num = $_POST['num'] ; /// VERIFICA POST
-    $idEmpleado = $_POST['idEmpleado'];
-    $idCertification = $_POST['idCertification'];
-    $fechaCreacion = $_POST['fechaCreacion'];
-    $fechaIngreso = $_POST['fechaIngreso']; 
-    $lastUp = $_POST['lastUp'];
-    $idTrainer = $_POST['idTrainer'];
-    $timestamp1 = strtotime($lastUp);
-        
-      
-        $query = 'INSERT INTO hrsregistered (idCertification, idTrainer, idEmpleado, fechaRegist, hourRegistered)
-        VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num.'")';
-        $db->query($query);
-
-        $_SESSION['done_a'] = "Se han agregado ". $num . " horas a la certificacion #".$idCertification; 
-
-               
-        $query = 'SELECT progress FROM certsq where idCertification ='.$idCertification;
-        $result = $db -> query($query);                 ////////////////OBTENER VALOR AGREGADO
-    
-        $row = $result -> fetch_assoc() ;    ////// CONVERTIR RES DEL QUERY EN ARRAY
-    
-    
-        $query2 = 'SELECT hrsregistered.idCertification, SUM(hrsregistered.hourRegistered) as total
-                    FROM hrsregistered 
-                    WHERE hrsregistered.idCertification ='.$idCertification; 
-          $result2 = $db -> query($query2);       
-        $conteo = $result2 -> fetch_assoc() ; 
-        
-
-        $query2 = 'UPDATE certsq SET 
-        progress    = '.$conteo['total'].'
-        WHERE idCertification ='.$idCertification; ////  EL RESULTADO DEL QUERY
-        $result2 = $db -> query($query2);
-
-
-
-        $query2 = 'SELECT progress FROM certsq where idCertification ='.$idCertification;
-        $result2 = $db -> query($query2);
-        
-        $row2 = $result2 -> fetch_assoc() ;  
-
-       if ($row2['progress'] < 150) {
-            
-            
-            $final = 'UPDATE certsq SET 
-            lastUp  ='.'"'.$fechaIngreso.'"'.' 
-            WHERE idCertification ='.$idCertification;
-            $result4 = $db->query($final);   
-        } 
-
-        $query2 = 'SELECT progress FROM certsq where idCertification ='.$idCertification;
-        $result2 = $db -> query($query2);
-            $row2 = $result2 -> fetch_assoc() ;
-
-        if ($row2['progress'] > 150) {
-            $final = 'UPDATE certsq SET 
-            progress  = 150 
-            WHERE idCertification ='.$idCertification;
-            $result4 = $db->query($final);  
-        }
-                    
-          header("Location: Admin_MainPage.php");
-
-       
-
-     
-    
-    
-   
-}
-
-
-
-if (isset($_POST['Admin_Add_Hours_Recertification'])) {
-        
-    $num2 = $_POST['num2'] ; /// VERIFICA POST
-    $idEmpleado = $_POST['idEmpleado'];
-    $idCertification = $_POST['idCertification'];
-    $fechaCreacion = $_POST['fechaCreacion'];
-    $fechaIngreso = $_POST['fechaIngreso']; 
-    $lastUp = $_POST['lastUp'];
-    $idTrainer = $_POST['idTrainer'];
-    $timestamp1 = strtotime($lastUp);
-        
-      
-                    $query = 'INSERT INTO hrsregisteredrecert (idCertification, idTrainer, idEmpleado, fechaRegist, hourRegistered)
-                    VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num2.'")';
-                    $db->query($query);
-
-                    $_SESSION['done_a'] = "Se han agregado ". $num2 . " horas a la certificacion #".$idCertification; 
-
-               
-        $query = 'SELECT progress FROM recertsq where idCertification ='.$idCertification;
-        $result = $db -> query($query);                 ////////////////OBTENER VALOR AGREGADO
-    
-        $row = $result -> fetch_assoc() ;    ////// CONVERTIR RES DEL QUERY EN ARRAY
-    
-    
-        $query2 = 'SELECT hrsregisteredrecert.idCertification, SUM(hrsregisteredrecert.hourRegistered) as total
-                    FROM hrsregisteredrecert 
-                    WHERE hrsregisteredrecert.idCertification ='.$idCertification; 
-          $result2 = $db -> query($query2);       
-        $conteo = $result2 -> fetch_assoc() ; 
-        
-
-        $query2 = 'UPDATE recertsq SET 
-        progress    = '.$conteo['total'].'
-        WHERE idCertification ='.$idCertification; ////  EL RESULTADO DEL QUERY
-        $result2 = $db -> query($query2);
-
-
-
-        $query2 = 'SELECT progress FROM recertsq where idCertification ='.$idCertification;
-        $result2 = $db -> query($query2);
-        
-        $row2 = $result2 -> fetch_assoc() ;  
-
-       if ($row2['progress'] < 37.5) {
-            
-            
-            $final = 'UPDATE recertsq SET 
-            lastUp  ='.'"'.$fechaIngreso.'"'.' 
-            WHERE idCertification ='.$idCertification;
-            $result4 = $db->query($final);     
-
-          header("Location: Admin_RecertPage.php");
-
-        }
-
-     
-    
-    
-   
-}
 
 
 if (isset($_POST['Add_Hours_Certification'])) {
@@ -322,7 +184,7 @@ if (isset($_POST['Add_Hours_Recertification'])) {
         $fechaCreacion = $_POST['fechaCreacion'];
         $fechaIngreso = $_POST['fechaIngreso'];
         $lastUp = $_POST['lastUp'];
-                $idTrainer = $_POST['idTrainer'];
+        $idTrainer = $_POST['idTrainer'];
 
 
             
@@ -502,5 +364,144 @@ if (isset($_GET['delete_ope'])) {
     }
 
 
+
+    
+if (isset($_POST['Admin_Add_Hours_Certification'])) {
+        
+    $num = $_POST['num'] ; /// VERIFICA POST
+    $idEmpleado = $_POST['idEmpleado'];
+    $idCertification = $_POST['idCertification'];
+    $fechaCreacion = $_POST['fechaCreacion'];
+    $fechaIngreso = $_POST['fechaIngreso']; 
+    $lastUp = $_POST['lastUp'];
+    $idTrainer = $_POST['idTrainer'];
+    $timestamp1 = strtotime($lastUp);
+        
+      
+        $query = 'INSERT INTO hrsregistered (idCertification, idTrainer, idEmpleado, fechaRegist, hourRegistered)
+        VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num.'")';
+        $db->query($query);
+
+        $_SESSION['done_a'] = "Se han agregado ". $num . " horas a la certificacion #".$idCertification; 
+
+               
+        $query = 'SELECT progress FROM certsq where idCertification ='.$idCertification;
+        $result = $db -> query($query);                 ////////////////OBTENER VALOR AGREGADO
+    
+        $row = $result -> fetch_assoc() ;    ////// CONVERTIR RES DEL QUERY EN ARRAY
+    
+    
+        $query2 = 'SELECT hrsregistered.idCertification, SUM(hrsregistered.hourRegistered) as total
+                    FROM hrsregistered 
+                    WHERE hrsregistered.idCertification ='.$idCertification; 
+          $result2 = $db -> query($query2);       
+        $conteo = $result2 -> fetch_assoc() ; 
+        
+
+        $query2 = 'UPDATE certsq SET 
+        progress    = '.$conteo['total'].'
+        WHERE idCertification ='.$idCertification; ////  EL RESULTADO DEL QUERY
+        $result2 = $db -> query($query2);
+
+
+
+        $query2 = 'SELECT progress FROM certsq where idCertification ='.$idCertification;
+        $result2 = $db -> query($query2);
+        
+        $row2 = $result2 -> fetch_assoc() ;  
+
+       if ($row2['progress'] < 150) {
+            
+            
+            $final = 'UPDATE certsq SET 
+            lastUp  ='.'"'.$fechaIngreso.'"'.' 
+            WHERE idCertification ='.$idCertification;
+            $result4 = $db->query($final);   
+        } 
+
+        $query2 = 'SELECT progress FROM certsq where idCertification ='.$idCertification;
+        $result2 = $db -> query($query2);
+            $row2 = $result2 -> fetch_assoc() ;
+
+        if ($row2['progress'] > 150) {
+            $final = 'UPDATE certsq SET 
+            progress  = 150 
+            WHERE idCertification ='.$idCertification;
+            $result4 = $db->query($final);  
+        }
+                    
+          header("Location: Admin_MainPage.php");
+
+       
+
+     
+    
+    
+   
+}
+
+
+
+if (isset($_POST['Admin_Add_Hours_Recertification'])) {
+        
+    $num2 = $_POST['num2'] ; /// VERIFICA POST
+    $idEmpleado = $_POST['idEmpleado'];
+    $idCertification = $_POST['idCertification'];
+    $fechaCreacion = $_POST['fechaCreacion'];
+    $fechaIngreso = $_POST['fechaIngreso']; 
+    $lastUp = $_POST['lastUp'];
+    $idTrainer = $_POST['idTrainer'];
+    $timestamp1 = strtotime($lastUp);
+        
+      
+                    $query = 'INSERT INTO hrsregisteredrecert (idCertification, idTrainer, idEmpleado, fechaRegist, hourRegistered)
+                    VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num2.'")';
+                    $db->query($query);
+
+                    $_SESSION['done_a'] = "Se han agregado ". $num2 . " horas a la certificacion #".$idCertification; 
+
+               
+        $query = 'SELECT progress FROM recertsq where idCertification ='.$idCertification;
+        $result = $db -> query($query);                 ////////////////OBTENER VALOR AGREGADO
+    
+        $row = $result -> fetch_assoc() ;    ////// CONVERTIR RES DEL QUERY EN ARRAY
+    
+    
+        $query2 = 'SELECT hrsregisteredrecert.idCertification, SUM(hrsregisteredrecert.hourRegistered) as total
+                    FROM hrsregisteredrecert 
+                    WHERE hrsregisteredrecert.idCertification ='.$idCertification; 
+          $result2 = $db -> query($query2);       
+        $conteo = $result2 -> fetch_assoc() ; 
+        
+
+        $query2 = 'UPDATE recertsq SET 
+        progress    = '.$conteo['total'].'
+        WHERE idCertification ='.$idCertification; ////  EL RESULTADO DEL QUERY
+        $result2 = $db -> query($query2);
+
+
+
+        $query2 = 'SELECT progress FROM recertsq where idCertification ='.$idCertification;
+        $result2 = $db -> query($query2);
+        
+        $row2 = $result2 -> fetch_assoc() ;  
+
+       if ($row2['progress'] < 37.5) {
+            
+            
+            $final = 'UPDATE recertsq SET 
+            lastUp  ='.'"'.$fechaIngreso.'"'.' 
+            WHERE idCertification ='.$idCertification;
+            $result4 = $db->query($final);     
+
+          header("Location: Admin_RecertPage.php");
+
+        }
+
+     
+    
+    
+   
+}6
 
 ?>

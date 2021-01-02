@@ -69,13 +69,13 @@ for ($i=0; $i < 11; $i++) {
 }
 
 $query = 'SELECT answeredtest.idCertification, SUM(answer.value) as total
-          FROM answeredtest
-          INNER JOIN answer ON answer.idAnswer = answeredtest.idAnswer
-          WHERE answeredtest.idCertification ='.$idCertification;
-          
-          $query = $db->query($query);
+      FROM answeredtest
+      INNER JOIN answer ON answer.idAnswer = answeredtest.idAnswer
+      WHERE answeredtest.idCertification ='.$idCertification;
+      
+      $query = $db->query($query);
 
-          $row = $query->fetch_assoc();
+      $row = $query->fetch_assoc();
 
           $totalPreguntas = 11 ;
           $totalAciertos = $row['total'];
@@ -279,7 +279,7 @@ $date = date('Y-m-d H:i:s');
         VALUES ('.$idCertification.','.$regladetres.')';
         $db->query($query);
 
-        $query = 'SELECT DISTINCT certsq.idCertification, certsq.idTrainer, trainers.nameTrainer, certsq.idArea, area.nombreArea, 
+        $query = 'SELECT DISTINCT TIMESTAMPDIFF(HOUR,certsq.lastUp, now()) as diferencia, certsq.idCertification, certsq.idTrainer, trainers.nameTrainer, certsq.idArea, area.nombreArea, 
         certsq.idOperacion, operacion.nOperacion , certsq.idComplejidad, complejidad.tipoComplejidad, 
         certsq.idEmpleado, certsq.nameEmpleado, certsq.lastUp , certsq.fechaCreacion, 
         certsq.progress
@@ -414,7 +414,14 @@ $date = date('Y-m-d H:i:s');
                                         if($prom > 100){
                                             $prom = 100;
                                         }
-                                    echo '<tr>';
+                                      
+                                    if ($data['diferencia'] > 0 OR empty($data['lastUp'])) {
+                                      echo '<tr class="table-success">';
+                                    } 
+                                    else  {
+                                      echo '<tr class="table-danger">';
+                                    }
+                                   
                                     echo   '<form action="" method="POST">';
                                     echo '<input type="hidden" name="idTrainer" value='.$data['idTrainer'].'>';
                                     echo '<input type="hidden" name="av_1" value='.$data['av_1'].'>';
@@ -435,8 +442,15 @@ $date = date('Y-m-d H:i:s');
                                     <i class="fas fa-history"></i></button></td>';
                                     
                                if ($value < 150 ) {
-                                
-                                echo  '<td><button type="submit" formtarget="_blank" formaction="Add_Hours.php" name="Add_Hours_Certification" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i></button></td>';
+
+                                if ($data['diferencia'] > 0 OR empty($data['lastUp'])) {
+                                  echo  '<td><button type="submit" formtarget="_blank" formaction="Add_Hours.php" name="Add_Hours_Certification" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i></button></td>';
+                                } 
+                                else  {
+                                  echo '<td></td>';
+                                }
+
+                              
                                 echo  '<td><input type="hidden" name="lastUp" value="'.$data['lastUp'].'">'.$data['lastUp'].'</td>';
                                 echo  '<td>'.$data['progress'].' HRS</td>';
                                 echo '<td><div class="progress" style="height: 32px;">

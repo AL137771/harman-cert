@@ -4,7 +4,7 @@
  $dbHost     = "localhost"; 
 $dbUsername = "u663775317_yhyj"; 
 $dbPassword = "egeNuVuZev"; 
-$dbName     = "u663775317_yhyj";  
+$dbName     = "u663775317_yhyj";   
 
 
 /* $dbHost     = "localhost"; 

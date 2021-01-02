@@ -12,6 +12,8 @@
                     <i class="fas fa-plus-circle"></i>   CREAR</button>
             <button type="submit" formaction='Trainer_MainPage.php' class="dropdown-item btn btn-outline-primary">
             <i class="fas fa-eye"></i>      VER</button>
+            <button type="submit" formaction='Multi_Add_Cert.php' class="dropdown-item btn btn-outline-primary">
+            <i class="fas fa-users"></i>      AGREGACION MASIVA</button>
             </div>
           </div>
 
@@ -25,6 +27,8 @@
             <i class="fas fa-plus-circle"></i>   CREAR</button>
             <button type="submit" formaction='Trainer_RecertPage.php' class="dropdown-item btn btn-outline-primary">
             <i class="fas fa-eye"></i>      VER</button>
+            <button type="submit" formaction='Multi_Add_Recert.php' class="dropdown-item btn btn-outline-primary">
+            <i class="fas fa-users"></i>      AGREGACION MASIVA</button>
             </div>
            </div>
 
