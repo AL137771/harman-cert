@@ -87,7 +87,7 @@ if (isset($_POST['data_sent'])) {
 
 
         if ($time < $num) { 
-        $_SESSION['errorMessage'] = "Aun no puedes agregar horas a esta certificacion";
+        $_SESSION['errorMessage'] = $_SESSION['errorMessage'] . "Aun no puedes agregar horas a la certificacion #".$idCertification.". "; 
       header("Location: Multi_Add_Cert.php");
             
         } else {
@@ -101,7 +101,7 @@ if (isset($_POST['data_sent'])) {
                 if (mysqli_num_rows($result = $db->query($query))) {                  
                     $row = $result -> fetch_assoc() ;  
                       if ($row['timeRemain'] < 1) {
-                        $_SESSION['empRestriction'] = "No puedes agregar horas en diferentes operaciones a un mismo empleado";
+                        $_SESSION['empRestriction'] = $_SESSION['empRestriction'] . "No puedes agregar horas a la certificacion #".$idCertification.", has agregado horas al mismo empleado en un periodo corto de tiempo. "; 
                         header("Location: Multi_Add_Cert.php");
                       } 
 
@@ -116,13 +116,13 @@ if (isset($_POST['data_sent'])) {
                     $query = 'INSERT INTO hrsregistered (idCertification, idTrainer, idEmpleado, fechaRegist, hourRegistered)
                     VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num.'")';
                     $db->query($query);
-                    $_SESSION['done'] = $_SESSION['done'] .  "Se han agregado ". $num . " horas a la certificacion #".$idCertification.', '; 
+                    $_SESSION['done'] = $_SESSION['done'] .  "Se han agregado ". $num . " horas a la certificacion #".$idCertification.'. '; 
 
                 } else {
                     $query = 'INSERT INTO hrsregistered (idCertification, idTrainer, idEmpleado, fechaRegist, hourRegistered)
                     VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num.'")';
                     $db->query($query);
-                    $_SESSION['done'] = $_SESSION['done'] . "Se han agregado ". $num . " horas a la certificacion #".$idCertification.', '; 
+                    $_SESSION['done'] = $_SESSION['done'] . "Se han agregado ". $num . " horas a la certificacion #".$idCertification.'. '; 
                 }
             }
 
@@ -273,7 +273,7 @@ if (isset($_POST['data_sent_re'])) {
           if ($time < $num2) {
              
       
-              $_SESSION['errorMessage'] = "Aun no puedes agregar horas a esta certificacion";
+            $_SESSION['errorMessage'] = $_SESSION['errorMessage'] . "Aun puedes agregar horas a la certificacion #".$idCertification.". ";             
               header("Location: Multi_Add_Recert.php");
               
           } else {
@@ -288,8 +288,8 @@ if (isset($_POST['data_sent_re'])) {
       if (mysqli_num_rows($result = $db->query($query))) {                  
           $row = $result -> fetch_assoc() ;  
             if ($row['timeRemain'] < 1) {
-              $_SESSION['empRestriction'] = "No puedes agregar horas en diferentes operaciones a un mismo empleado";
-              header("Location: Multi_Add_Recert.php");
+                $_SESSION['empRestriction'] = $_SESSION['empRestriction'] . "No puedes agregar horas a la certificacion #".$idCertification.", has agregado horas al mismo empleado en un periodo corto de tiempo. "; 
+                header("Location: Multi_Add_Recert.php");
             } 
   
       } 
@@ -302,13 +302,13 @@ if (isset($_POST['data_sent_re'])) {
                       VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num2.'")';
                       $db->query($query);
   
-                      $_SESSION['done'] = $_SESSION['done'] . "Se han agregado ". $num2 . " horas a la certificacion #".$idCertification.', '; 
+                      $_SESSION['done'] = $_SESSION['done'] . "Se han agregado ". $num2 . " horas a la certificacion #".$idCertification.'. '; 
   
                   } else {
                       $query = 'INSERT INTO hrsregisteredrecert (idCertification, idTrainer, idEmpleado, fechaRegist, hourRegistered)
                       VALUES ("'.$idCertification.'", "'.$idTrainer.'","'.$idEmpleado.'","'.$date.'", "'.$num2.'")';
                       $db->query($query);
-                      $_SESSION['done'] = $_SESSION['done']. "Se han agregado ". $num2 . " horas a la certificacion #".$idCertification.', ';; 
+                      $_SESSION['done'] = $_SESSION['done']. "Se han agregado ". $num2 . " horas a la certificacion #".$idCertification.'. ';; 
                   }
               }
   

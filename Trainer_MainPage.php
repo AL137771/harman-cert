@@ -278,8 +278,8 @@ $date = date('Y-m-d H:i:s');
         $query = 'INSERT INTO califications (idCertification, calification)
         VALUES ('.$idCertification.','.$regladetres.')';
         $db->query($query);
-
-        $query = 'SELECT DISTINCT TIMESTAMPDIFF(HOUR,certsq.lastUp, now()) as diferencia, certsq.idCertification, certsq.idTrainer, trainers.nameTrainer, certsq.idArea, area.nombreArea, 
+       // SELECT DISTINCT TIMESTAMPDIFF(HOUR,certsq.lastUp, NOW() - INTERVAL 7 HOUR) as diferencia,
+        $query = 'SELECT DISTINCT TIMESTAMPDIFF(HOUR,certsq.lastUp, NOW() - INTERVAL 7 HOUR) as diferencia, certsq.idCertification, certsq.idTrainer, trainers.nameTrainer, certsq.idArea, area.nombreArea, 
         certsq.idOperacion, operacion.nOperacion , certsq.idComplejidad, complejidad.tipoComplejidad, 
         certsq.idEmpleado, certsq.nameEmpleado, certsq.lastUp , certsq.fechaCreacion, 
         certsq.progress
