@@ -9,7 +9,7 @@ if (isset($_POST['Send_Area_Info'])) {
     $idEmpleado = $_POST['idEmpleado'];
     $nameEmpleado = $_POST['nameEmpleado'];
 
- $query = 'SELECT *
+/*  $query = 'SELECT *
     FROM recertsq 
     WHERE 
             recertsq.idArea ='.$area.'
@@ -30,7 +30,7 @@ if (mysqli_num_rows($i = $db->query($query))) {
 header("Location: Create_Recertification.php");
 }
    else { 
-    
+     */
 $sql = "INSERT INTO recertsq  (idTrainer, idArea, idOperacion, idComplejidad, idEmpleado, nameEmpleado, fechaCreacion)
 VALUES ('$trainer', '$area', '$operacion', '$complejidad', '$idEmpleado', '$nameEmpleado', '$date')";
 
@@ -42,7 +42,7 @@ if ($db->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $db->error;
 }
-}
+/* } */
 }
 ?>
 

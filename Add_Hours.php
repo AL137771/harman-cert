@@ -119,7 +119,7 @@ if (isset($_POST['Add_Hours_Recertification'])) {
     $lastUp = $_POST['lastUp'];
     $_SESSION['id'];
     $idEmpleado = $_POST['idEmpleado'];
-    $actualDate = date("H:i:s",strtotime($date));
+    echo $actualDate = date("H:i:s",strtotime($date));
     $day = date("l",strtotime($date));
     $intermediateHour = date_create('');
     date_time_set($intermediateHour, 23, 59, 59);
@@ -159,7 +159,7 @@ if (isset($_POST['Add_Hours_Recertification'])) {
         if ($actualDate > $row['start']   AND  $actualDate <  $row['end']  ) {
         }
     else  {
-      $_SESSION['turnRestriction'] = "No puedes ingresar horas fuera de tu horario laboral";
+      $_SESSION['turnRestriction'] = "No puedes ingresar horas fuera de tu horario laboral1";
       header("Location: Trainer_RecertPage.php");
     }
 
@@ -179,7 +179,7 @@ if (isset($_POST['Add_Hours_Recertification'])) {
   
     }
     else  {
-      $_SESSION['turnRestriction'] = "No puedes ingresar horas fuera de tu horario laboral";
+      $_SESSION['turnRestriction'] = "No puedes ingresar horas fuera de tu horario laboral2";
       header("Location: Trainer_RecertPage.php");
     }
   }
@@ -195,7 +195,7 @@ if (isset($_POST['Add_Hours_Recertification'])) {
    if ($actualDate > $row['start']   AND  $actualDate <  $row['end']  ) {
   }
 else  {
-$_SESSION['turnRestriction'] = "No puedes ingresar horas fuera de tu horario laboral";
+$_SESSION['turnRestriction'] = "No puedes ingresar horas fuera de tu horario laboral3";
 header("Location: Trainer_RecertPage.php");
 }
   }

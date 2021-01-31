@@ -48,9 +48,9 @@ if(isset($_SESSION['dayRestriction'])){
   echo "<script>window.close();</script>";
 }
 
+   // SELECT DISTINCT TIMESTAMPDIFF(HOUR,certsq.lastUp, NOW() - INTERVAL 7 HOUR) as diferencia,
 
-
-$query = "SELECT DISTINCT TIMESTAMPDIFF(HOUR,recertsq.lastUp, NOW() - INTERVAL 7 HOUR) as diferencia, recertsq.idCertification, recertsq.idTrainer, trainers.nameTrainer, recertsq.idArea, area.nombreArea, 
+$query = "SELECT DISTINCT TIMESTAMPDIFF(HOUR,recertsq.lastUp, now()) as diferencia, recertsq.idCertification, recertsq.idTrainer, trainers.nameTrainer, recertsq.idArea, area.nombreArea, 
                             recertsq.idOperacion, operacion.nOperacion , recertsq.idComplejidad, complejidad.tipoComplejidad, 
                             recertsq.idEmpleado, recertsq.nameEmpleado, recertsq.fechaCreacion, recertsq.lastUp, 
                             recertsq.progress
@@ -287,7 +287,7 @@ if(isset($_POST['Certification_Tracing_Values'])){
                                if ($value < 37.5 ) {
                                 
                                 if ($data['diferencia'] > 0 OR empty($data['lastUp'])) {
-                                  echo  '<td><button type="submit" formtarget="_blank" formaction="Add_Hours.php" name="Add_Hours_Certification" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i></button></td>';
+                                  echo  '<td><button type="submit" formtarget="_blank" formaction="Add_Hours.php" name="Add_Hours_Recertification" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i></button></td>';
                                 } 
                                 else  {
                                   echo '<td></td>';
