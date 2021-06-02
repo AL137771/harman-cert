@@ -50,7 +50,7 @@ if(isset($_SESSION['dayRestriction'])){
 
    // SELECT DISTINCT TIMESTAMPDIFF(HOUR,certsq.lastUp, NOW() - INTERVAL 7 HOUR) as diferencia,
 
-$query = "SELECT DISTINCT TIMESTAMPDIFF(HOUR,recertsq.lastUp, now()) as diferencia, recertsq.idCertification, recertsq.idTrainer, trainers.nameTrainer, recertsq.idArea, area.nombreArea, 
+$query = "SELECT DISTINCT TIMESTAMPDIFF(HOUR,recertsq.lastUp, NOW() - INTERVAL 7 HOUR) as diferencia, recertsq.idCertification, recertsq.idTrainer, trainers.nameTrainer, recertsq.idArea, area.nombreArea, 
                             recertsq.idOperacion, operacion.nOperacion , recertsq.idComplejidad, complejidad.tipoComplejidad, 
                             recertsq.idEmpleado, recertsq.nameEmpleado, recertsq.fechaCreacion, recertsq.lastUp, 
                             recertsq.progress
